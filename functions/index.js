@@ -26,6 +26,7 @@ exports.sendMessage = functions.region('asia-northeast2').firestore
               title: 'Someone picking up your treasure.',
               body: treasureName,
             });
+          console.log(email, treasureName)
           expo.sendPushNotificationsAsync(message)
         } else { null }
       })
