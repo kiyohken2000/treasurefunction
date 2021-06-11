@@ -12,8 +12,10 @@ exports.sendMessage = functions.region('asia-northeast2').firestore
     const newValue = change.after.data();
     const email = newValue.createrEmail
     const treasureName = newValue.treasureName
+    const del = newValue.del
     // console.log(name,text,members)
 
+    if (!del) {
       const message = [];
       const userRef = db.collection('tokens').doc(email)
       userRef.get().then((doc) => {
@@ -30,4 +32,7 @@ exports.sendMessage = functions.region('asia-northeast2').firestore
           expo.sendPushNotificationsAsync(message)
         } else { null }
       })
+    } else {
+      null
+    }
   });
